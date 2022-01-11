@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <fstream>
 
 namespace greedy_algorithm {
 
@@ -23,6 +23,19 @@ namespace greedy_algorithm {
 //    vector<int> arr = {5, 6, 2, 9, 7, 10, 7};
 //    int result = numberOfToys(arr, x);
 //    cout << "Maximum number of toys can buy: " << result << endl;
+        ifstream MyReadFile("test.txt");
+        if (MyReadFile) {
+            string myText;
+// Use a while loop together with the getline() function to read the file line by line
+            while (getline(MyReadFile, myText)) {
+                // Output the text from the file
+                cout << myText << endl;
+            }
+            MyReadFile.close();
+        } else {
+            cout << "File not found" << endl;
+        }
+
         cout << "Press ENTER to continue, or any other key to get back to the main menu:" << endl;
     }
 }
