@@ -1,6 +1,6 @@
 #include <iostream>
 #include <functional>
-#include "greedy.h"
+#include "../../include/greedy.h"
 #define EXIT_CODE 0
 
 const int BACK_KEY = 81; // 'Q'

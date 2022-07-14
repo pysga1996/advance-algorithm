@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/greedy/greedy.h"
+#include "../include/greedy.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

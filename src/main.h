@@ -1,8 +1,0 @@
-//
-// Created by pysga on 3/2/2022.
-//
-
-#ifndef ADVANCED_ALGORITHMS_MAIN_H
-#define ADVANCED_ALGORITHMS_MAIN_H
-
-#endif //ADVANCED_ALGORITHMS_MAIN_H
