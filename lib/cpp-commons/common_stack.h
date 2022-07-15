@@ -6,9 +6,9 @@
 #include <exception>
 #include <iostream>
 #include <fstream>
-#include <common-util.h>
-#include <cpp-commons/UnsupportedDataTypeException.h>
-#include <cpp-commons/common-var.h>
+#include <common_util.h>
+#include <unsupported_data_type_exception.h>
+#include <common_var.h>
 
 namespace cpp_commons {
 
@@ -21,19 +21,19 @@ namespace cpp_commons {
                 using namespace std;
                 stack<T> s{};
                 auto start = 0U;
-                auto end = str.find(DELIM);
+                auto end = str.find(COMMA);
                 string token;
                 T data;
                 while (end != string::npos) {
                     token = str.substr(start, end - start);
-                    data = common_util::convertData<T>(token);
+                    data = data_util::convertData<T>(token);
                     s.push(data);
 //                    cout << token << endl;
-                    start = end + DELIM.length();
-                    end = str.find(DELIM, start);
+                    start = end + COMMA.length();
+                    end = str.find(COMMA, start);
                 }
                 token = str.substr(start, end);
-                data = common_util::convertData<T>(token);
+                data = data_util::convertData<T>(token);
                 s.push(data);
 //                cout << token << endl;
                 return s;
@@ -55,36 +55,28 @@ namespace cpp_commons {
             }
 
             template<typename T>
-            void printInternal(std::stack<T> s) {
-                using namespace std;
-                // If stack is empty then return
-                if (s.empty())
-                    return;
-                T x = s.top();
-                // Pop the top element of the stack
-                s.pop();
-                // Recursively call the function PrintStack
-                printInternal(s);
-                // Print the stack element starting
-                // from the bottom
-                cout << " " << x << " |";
-                // Push the same element onto the stack
-                // to preserve the order
-                s.push(x);
-            }
-
-            template<typename T>
             void print(std::stack<T> s) {
                 using namespace std;
-                cout << "<<===>> ";
-                printInternal(s);
+                cout << "| ";
+                stack<int> temp;
+                while (s.empty() == false) {
+                    temp.push(s.top());
+                    s.pop();
+                }
+                while (!temp.empty()) {
+                    int t = temp.top();
+                    cout << t << TAB;
+                    temp.pop();
+
+                    // To restore contents of
+                    // the original stack.
+                    s.push(t);
+                }
+                cout << "<<<>>>";
             }
 
         }
     }
 }
 
-#endif //CPP_COMMONS_COMMON_SET_H
-
-
-#endif //CPP_COMMONS_COMMON_STACK_H
+#endif

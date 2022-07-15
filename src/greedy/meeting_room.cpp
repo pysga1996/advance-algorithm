@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
 
 typedef struct Meeting {

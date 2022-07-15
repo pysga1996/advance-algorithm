@@ -1,46 +1,46 @@
-#ifndef CPP_COMMONS_COMMON_VECTOR_H
-#define CPP_COMMONS_COMMON_VECTOR_H
+#ifndef CPP_COMMONS_COMMON_SET_H
+#define CPP_COMMONS_COMMON_SET_H
 
-#include <vector>
+#include <set>
 #include <string>
 #include <exception>
 #include <iostream>
 #include <fstream>
-#include <common-util.h>
-#include <cpp-commons/UnsupportedDataTypeException.h>
-#include <cpp-commons/common-var.h>
+#include <common_util.h>
+#include <unsupported_data_type_exception.h>
+#include <common_var.h>
 
 namespace cpp_commons {
 
     namespace common_collection {
 
-        namespace common_vector {
+        namespace common_set {
 
             template<typename T>
-            std::vector<T> convertFromString(const std::string &str) {
+            std::set<T> convertFromString(const std::string &str) {
                 using namespace std;
-                vector<T> v{};
+                set<T> s{};
                 auto start = 0U;
-                auto end = str.find(DELIM);
+                auto end = str.find(COMMA);
                 string token;
                 T data;
                 while (end != string::npos) {
                     token = str.substr(start, end - start);
-                    data = common_util::convertData<T>(token);
-                    v.push_back(data);
+                    data = data_util::convertData<T>(token);
+                    s.insert(data);
 //                    cout << token << endl;
-                    start = end + DELIM.length();
-                    end = str.find(DELIM, start);
+                    start = end + COMMA.length();
+                    end = str.find(COMMA, start);
                 }
                 token = str.substr(start, end);
-                data = common_util::convertData<T>(token);
-                v.push_back(data);
+                data = data_util::convertData<T>(token);
+                s.insert(data);
 //                cout << token << endl;
-                return v;
+                return s;
             }
 
             template<typename T>
-            std::vector<T> importFromFile(const std::string &fileName) {
+            std::set<T> importFromFile(const std::string &fileName) {
                 using namespace std;
                 ifstream is(fileName);
                 if (is.is_open()) {   //checking whether the file is open
@@ -51,23 +51,25 @@ namespace cpp_commons {
                     }
                     is.close(); //close the file object.
                 }
-                return vector<T>{};
+                return set<T>{};
             }
 
             template<typename T>
-            void print(std::vector<T> v) {
+            void print(std::set<T> s) {
                 using namespace std;
                 cout << "[";
-                for (int i = 0; i < v.size(); ++i) {
-                    cout << v.at(i);
-                    if (i < v.size() - 1) {
+                typename set<T>::iterator beforeEnd = prev(s.end(), 1);
+                for (auto it = s.begin(); it != s.end(); ++it){
+                    cout << it.operator*();
+                    if (it != beforeEnd) {
                         cout << ", ";
                     }
                 }
                 cout << "]";
             }
+
         }
     }
 }
 
-#endif //CPP_COMMONS_COMMON_VECTOR_H
+#endif

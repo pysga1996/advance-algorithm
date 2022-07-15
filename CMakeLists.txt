@@ -11,14 +11,26 @@ include_directories(lib/googletest/googletest/include)
 
 #include the googlemock/include dir
 include_directories(lib/googletest/googlemock/include)
+include_directories(lib/cpp-commons)
+include_directories(include)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-file(GLOB ADVANCED_ALGORITHMS_SRC src/*.cpp src/*/*.cpp include/*.h)
+link_directories(lib/cpp-commons)
+
+# m is lib definition of <math.h>
+set(WINDOWS_LIB cpp-commons.dll.a m)
+
+file(GLOB ADVANCED_ALGORITHMS_SRC src/*.cpp src/*/*.cpp include/*.h lib/cpp-commons/*.h)
 
 add_executable(advanced-algorithms ${ADVANCED_ALGORITHMS_SRC})
 
-file(GLOB ADVANCED_ALGORITHMS_TEST src/*.cpp src/*/*.cpp include/*.h test/*.cpp)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/menu/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/menu)
+
+file(GLOB ADVANCED_ALGORITHMS_TEST src/*.cpp src/*/*.cpp include/*.h lib/cpp-commons/*.h test/*.cpp)
 
 add_executable(advanced-algorithms-test ${ADVANCED_ALGORITHMS_TEST})
+
+target_link_libraries(advanced-algorithms ${WINDOWS_LIB})
 
 #Link with GoogleTest
 target_link_libraries(advanced-algorithms-test gtest gtest_main)

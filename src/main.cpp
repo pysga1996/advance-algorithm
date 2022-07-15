@@ -1,18 +1,24 @@
-#include "main.h"
+#include <common_util.h>
+#include <util.h>
+#include <main.h>
 
-ExDemoFuncPtr basicAlgorithmsMapper(int selection);
+using ExDemoFuncPtr = cpp_commons::file_util::ExDemoFuncPtr;
+
+ExDemoFuncPtr advancedAlgorithmsMapper(int selection);
 
 int main() {
-    processMenu(ARITHMETIC_MENU_PATH, basicAlgorithmsMapper);
+    using namespace std;
+    using namespace cpp_commons::file_util;
+    processMenu(constants::ADVANCED_ALGORITHMS_MENU_PATH, advancedAlgorithmsMapper);
     return 0;
 }
 
-ExDemoFuncPtr basicAlgorithmsMapper(const int selection) {
+ExDemoFuncPtr advancedAlgorithmsMapper(const int selection) {
     switch (selection) {
         case 1:
-            return arithmeticModule;
+            return greedy_algorithm::greedyModule;
         default:
-            return NULL;
+            return nullptr;
     }
 }
 

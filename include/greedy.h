@@ -6,6 +6,8 @@
 namespace greedy_algorithm {
     using namespace std;
 
+    void greedyModule();
+
     int meetingRoom(vector<int> s, vector<int> e);
 
     void numberOfToysDemo();

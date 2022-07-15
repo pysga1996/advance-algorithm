@@ -1,4 +1,6 @@
 #ifndef ADVANCED_ALGORITHMS_MAIN_H
 #define ADVANCED_ALGORITHMS_MAIN_H
 
+#include <greedy.h>
+
 #endif //ADVANCED_ALGORITHMS_MAIN_H
