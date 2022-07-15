@@ -4,21 +4,20 @@
 
 using ExDemoFuncPtr = cpp_commons::file_util::ExDemoFuncPtr;
 
-ExDemoFuncPtr advancedAlgorithmsMapper(int selection);
+using ExDemoFuncMapper = cpp_commons::file_util::ExDemoFuncMapper;
 
 int main() {
     using namespace std;
     using namespace cpp_commons::file_util;
-    processMenu(constants::ADVANCED_ALGORITHMS_MENU_PATH, advancedAlgorithmsMapper);
+    ExDemoFuncMapper funcMapper = [](const int selection) -> ExDemoFuncPtr {
+        switch (selection) {
+            case 1:
+                return greedy_algorithm::greedyModule;
+            default:
+                return nullptr;
+        }
+    };
+    processMenu(constants::ADVANCED_ALGORITHMS_MENU_PATH, funcMapper);
     return 0;
-}
-
-ExDemoFuncPtr advancedAlgorithmsMapper(const int selection) {
-    switch (selection) {
-        case 1:
-            return greedy_algorithm::greedyModule;
-        default:
-            return nullptr;
-    }
 }
 
