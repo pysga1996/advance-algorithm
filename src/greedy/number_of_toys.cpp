@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <common_list.h>
+#include <common_vector.h>
 #include <common_util.h>
 
 namespace greedy_algorithm {
@@ -20,11 +20,13 @@ namespace greedy_algorithm {
     }
 
     void numberOfToysDemo() {
-        cout << "Enter number of coins:" << endl;
         using namespace cpp_commons::scan_util;
-        using namespace cpp_commons::common_collection::common_list;
+        using namespace cpp_commons::common_collection::common_vector;
+        cout << "Enter number of coins:" << endl;
         int x = scanInt();
-        vector<int> arr = {5, 6, 2, 9, 7, 10, 7};
+        cout << "Enter number of toys:" << endl;
+        int y = scanInt();
+        vector<int> arr = scanVector<int>(y);
         int result = numberOfToys(arr, x);
         cout << "Maximum number of toys can buy: " << result << endl;
     }

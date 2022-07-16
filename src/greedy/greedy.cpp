@@ -3,11 +3,7 @@
 #include <util.h>
 #include <common_util.h>
 
-int command;
-
 using ExDemoFuncPtr = cpp_commons::file_util::ExDemoFuncPtr;
-
-ExDemoFuncPtr greedyModuleMapper(int selection);
 
 namespace greedy_algorithm {
 
