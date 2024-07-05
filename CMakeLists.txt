@@ -22,7 +22,9 @@ set(WINDOWS_LIB cpp-commons.dll.a m)
 
 file(GLOB ADVANCED_ALGORITHMS_SRC src/*.cpp src/*/*.cpp include/*.h lib/cpp-commons/*.h)
 
-add_executable(advanced-algorithms ${ADVANCED_ALGORITHMS_SRC})
+add_executable(advanced-algorithms ${ADVANCED_ALGORITHMS_SRC}
+        src/d_array/d_array.cpp
+        src/d_array/sum_array.cpp)
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/menu/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/menu)
 

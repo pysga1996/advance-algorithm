@@ -1,0 +1,3 @@
+---Data Structure Array Module---
+1. Sum of array
+1. Square array

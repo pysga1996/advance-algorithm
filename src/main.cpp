@@ -12,6 +12,8 @@ int main() {
     ExDemoFuncMapper funcMapper = [](const int selection) -> ExDemoFuncPtr {
         switch (selection) {
             case 1:
+                return d_array::sumArrayDemo;
+            case 2:
                 return greedy_algorithm::greedyModule;
             default:
                 return nullptr;
